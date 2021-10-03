@@ -33,11 +33,6 @@ CREATE (adv)-[:TWITTER]->(t)
 RETURN AlbertWirtes, AlWirtes, adv
 
 
-### Query everything we just created above:
-MATCH (n) RETURN n LIMIT 25
-
-
-
 ### Create Golden Record for person1
 
 // Match CS and HCM records and create a golden record, then create relationships to the source records.
@@ -54,12 +49,11 @@ MATCH (adv:persona) WHERE adv.sourceSystemId="ADV123"
 CREATE (adv)-[:ADVANCE]->(g)
 
 
-### Example Queries
-MATCH (a:persona),(b:persona)
-WHERE a.name = 'Al Wirtes' AND b.name = 'Albert Wirtes'
-CREATE (a)-[r:RELTYPE]->(b)
-RETURN type(r)
+*** We now have 3 source records and one Golden Record created.
+*** Use the Query below to take a look:
 
+### Query everything we just created above:
+MATCH (n) RETURN n LIMIT 50
 
 
 
@@ -115,9 +109,29 @@ RETURN g
 
 
 // Find connections between Robert Sudo and Alisha Sweeney
-MATCH path = (p1:persona {name:"Robert Sudo"})-[*]-(p2:persona {name:"Alisha Sweeney"})
+MATCH path = (p1:persona {name:"Robert Smith"})-[*]-(p2:persona {name:"Alisha Alisha"})
 RETURN path
 ORDER BY LENGTH(path) LIMIT 1
 // **Remove ORDER BY to get all connections, leave in to get the shortest path**
+
+
+
+
+// DELETE EVERYTHING & DO IT AGAIN:
+// In order to delete everything, you have to first delete the relationships.
+// This query finds all relationships and deletes them:
+
+match (n)-[r]-()
+DELETE r
+
+
+// Now you can do the same to the nodes:
+
+MATCH (n) delete n
+
+
+
+
+
 
 
