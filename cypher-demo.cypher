@@ -1,16 +1,7 @@
 // DEMO
-// person1 (Al) Section
-// Create CS Record for person1
-create (AlWirtes:persona {name:"Albert Wirtes", birthday:"April 24", sourceSystem:"CS", sourceSystemId:"123456"})
-create (AlHomeAddr:address {add1:"123 Main Street", city:"Anytown", state:"Indiana", zip:"46410"})
-CREATE (AlWirtes)-[:ADDRESS {type:"home"}]->(AlHomeAddr)
-create (alEmail:email {email:"al.wirtes@college.edu"})
-CREATE (AlWirtes)-[:EMAIL {type:"official"}]->(alEmail)
-CREATE (alPhone:phone {mobile:"303-555-1212"})
-CREATE (AlWirtes)-[:PHONE {type:"mobile"}]->(alPhone)
 
-// Create HCM Record for person1
-// MATCH (p:persona {sourceSystemId:"99008877"})
+// CREATE A PERSON (person1) IN SYSTEM #1, HR System (HCM)
+// Create HR System (HCM) Source Record for person1 (Al)
 create (AlbertWirtes:persona {name:"Al Wirtes", birthday:"April 1", sourceSystem:"HCM", sourceSystemId:"99008877"})
 create (AlbertHomeAddr:address {add1:"123 Main Street", city:"Mytown", state:"Indiana", zip:"55555"})
 CREATE (AlbertWirtes)-[:ADDRESS {type:"home"}]->(AlbertHomeAddr)
@@ -21,7 +12,18 @@ CREATE (AlbertWirtes)-[:PHONE {type:"mobile"}]->(albertPhone)
 create (d:department {name:"IT"})
 CREATE (AlbertWirtes)-[:DEPT]->(d)
 
-// Create Advancement Record for person1
+// CREATE PERSON (person1) IN SYSTEM #2, Student System (CS)
+// Create Student System (CS) Source Record for person1 (Al)
+create (AlWirtes:persona {name:"Albert Wirtes", birthday:"April 1", sourceSystem:"CS", sourceSystemId:"123456"})
+create (AlHomeAddr:address {add1:"123 Main Street", city:"Anytown", state:"Indiana", zip:"46410"})
+CREATE (AlWirtes)-[:ADDRESS {type:"home"}]->(AlHomeAddr)
+create (alEmail:email {email:"al.wirtes@college.edu"})
+CREATE (AlWirtes)-[:EMAIL {type:"official"}]->(alEmail)
+CREATE (alPhone:phone {mobile:"303-555-1212"})
+CREATE (AlWirtes)-[:PHONE {type:"mobile"}]->(alPhone)
+
+// CREATE PERSON (person1) IN SYSTEM #3, Fund Raising CRM (Advance)
+// Create Advance Record for person1 (Al)
 CREATE (adv:persona {name:"Al Wirtes", sourceSystem:"Advance", sourceSystemId:"ADV123"})
 CREATE (advEmail:email {email:"wirtes@gmail.com"})
 CREATE (adv)-[:EMAIL]->(advEmail)
@@ -31,6 +33,12 @@ CREATE (t:social {name:"@al_wirtes"})
 CREATE (adv)-[:TWITTER]->(t)
 //
 RETURN AlbertWirtes, AlWirtes, adv
+
+
+
+### Query everything we just created above:
+MATCH (n) RETURN n LIMIT 50
+
 
 
 ### Create Golden Record for person1
