@@ -1,5 +1,14 @@
-# neo4j-cyhper-demo-01
+# Neo4j Cypher Demo 01 - Querying a path between nodes in a graph
 This is the Neo4j demo that I give to demonstrate some of the unique characteristics of graph databases. *I'm just roughing this in for now. I'll clean it up later (yeah, right).*
+
+In this demo, we create a data graph representing person records that have been mastered across several enterprise system sources: HR, Student Infomation System (CS) & a fund raising system (Advance). We then construct a very simple query to find how two people in this graph are related to one another. This demonstrates a key difference in characteristics between graph and relational databases. In this case, a graph database has the advantage over a relational database because we do not need to specify how many "hops" or relationships to traverse between the two people.
+
+We will add three people to the graph: 
+ - person1, Al, has mastered person records in HR, CS & Advance systems
+ - person2, Alisha, has a mastered person record in the CS system
+ - person3, Bob, has a mastered person record in the HR system
+
+We will build out the master data and then query for how Bob is related to Alisha in the graph.
 
 Rough outline of steps:
 
@@ -133,7 +142,7 @@ Rough outline of steps:
 
 ![Screen Shot 2021-10-03 at 11 27 26 AM](https://user-images.githubusercontent.com/11652957/135764883-755a9328-d8a8-43d0-bb9e-ca18dd47f41b.png)
  - We can now query for the shortest path of relationships between person3 (Bob) and person2 (Alisha) with this code:
- - 
+ 
         MATCH path = (p1:persona {name:"Robert Smith"})-[*]-(p2:persona {name:"Alisha Alisha"})
         RETURN path
         ORDER BY LENGTH(path) LIMIT 1
