@@ -78,13 +78,58 @@ Rough outline of steps:
         MATCH (n) RETURN n LIMIT 25
 
 ![Screen Shot 2021-10-03 at 11 09 13 AM](https://user-images.githubusercontent.com/11652957/135764383-9850db1e-9aad-47ec-83c3-9c9bb961f9f3.png)
- - Create person2 Record (Alisha) *Stopped adding code examples in ReadMe HERE*
- - Connect person2 to a fund
- - Connect person2's social media to person1. It will look like this:
+
+ - Let's create person2 (Alisha). She only has a source record in the student system (CS):
+
+        // Create person2 CS Record
+        create (Alisha:persona {name:"Alisha Alisha", birthday:"May 1", sourceSystem:"CS", sourceSystemId:"CS1234"})
+        create (addr:address {add1:"555 Sesame Street", city:"Anytown", state:"Colorado", zip:"80321"})
+        CREATE (Alisha)-[:ADDRESS {type:"home"}]->(addr)
+        create (e:email {email:"alisha.alisha@college.edu"})
+        CREATE (Alisha)-[:EMAIL {type:"official"}]->(e)
+        CREATE (ph:phone {mobile:"702-555-1212"})
+        CREATE (Alisha)-[:PHONE {type:"mobile"}]->(ph)
+        CREATE (pr:program {title:"Journalism"})
+        CREATE (Alisha)-[:MAJOR {degree:"BA"}]->(pr)
+        CREATE (s:social {name: "@alisha_alisha"})
+        CREATE (Alisha)-[:TWITTER]->(s)
+
+ - Create a relationship to between person2 and a fund:
+
+        // Run separately
+        MATCH (f:fund) WHERE f.name="College Radio Station"
+        MATCH (Alisha:persona) WHERE Alisha.sourceSystemId="CS1234"
+        CREATE (Alisha)-[:VOLUNTEER]->(f)
+
+ - Person2 also has social media relationships to person1:
+
+        // Create Social Media Relationships between person1 (Al) and person2 (Alisha)
+        MATCH (s1:social) WHERE s1.name="@al_wirtes"
+        MATCH (s2:social) WHERE s2.name="@alisha_alisha"
+        CREATE (s1)-[:FOLLOWS]->(s2)
+        CREATE (s2)-[:FOLLOWS]->(s1)
+
+ - Query all the nodes to see the relationships:
+
+        MATCH (n) RETURN n LIMIT 25
 
 ![Screen Shot 2021-10-03 at 11 16 42 AM](https://user-images.githubusercontent.com/11652957/135764646-fb2a1e57-2fca-458e-9eca-0464630f79d2.png)
- - Create a person3 Record (Bob). 
- - Query all the records. The graph will now look like this:
+
+ - Let's create the last record, person3 (Bob)
+
+        // Let's make person3 (Bob)
+        // Create HCM Record
+        MATCH (d:department {name:"IT"})
+        create (Bob:persona {name:"Robert Smith", birthday:"Jan 1", sourceSystem:"HCM", sourceSystemId:"666", preferredName:"Suds"})
+        create (BobHomeAddr:address {add1:"123 My Street", city:"Cooperstown", state:"PA", zip:"12345"})
+        CREATE (Bob)-[:ADDRESS {type:"home"}]->(BobHomeAddr)
+        create (BobEmail:email {email:"robert.smith@college.edu"})
+        CREATE (Bob)-[:EMAIL {type:"official"}]->(BobEmail)
+        CREATE (BobPhone:phone {mobile:"303-555-4321"})
+        CREATE (Bob)-[:PHONE {type:"mobile"}]->(BobPhone)
+        CREATE (Bob)-[:DEPT]->(d)
+
+ - Query all the records with `MATCH (n) RETURN n LIMIT 25`. The graph will now look like this:
 
 ![Screen Shot 2021-10-03 at 11 27 26 AM](https://user-images.githubusercontent.com/11652957/135764883-755a9328-d8a8-43d0-bb9e-ca18dd47f41b.png)
  - We can now query for the shortest path of relationships between person3 (Bob) and person2 (Alisha) with this code:
@@ -92,15 +137,16 @@ Rough outline of steps:
         MATCH path = (p1:persona {name:"Robert Smith"})-[*]-(p2:persona {name:"Alisha Alisha"})
         RETURN path
         ORDER BY LENGTH(path) LIMIT 1
+        
  ![Screen Shot 2021-10-03 at 11 30 40 AM](https://user-images.githubusercontent.com/11652957/135765019-d33c0106-ca33-408d-b1a8-77ce811797e9.png)
 
  - We can query for **ALL** paths of relationships by removing the ORDER BY statement from the query above:
- - 
+ 
         MATCH path = (p1:persona {name:"Robert Smith"})-[*]-(p2:persona {name:"Alisha Alisha"})
         RETURN path
+        
 ![Screen Shot 2021-10-03 at 11 36 34 AM](https://user-images.githubusercontent.com/11652957/135765157-50c059e4-15c9-4cea-9ed5-39a5cff6ce88.png)
 
  - **FINAL STEP: Perform demo. Amaze friends and coworkers by asking them to replicate the demo in an RDBMS using SQL, and they'll be like:**
 
-    ![Sudden-Clarity-Clarence](https://user-images.githubusercontent.com/11652957/135767892-45543a14-5060-426f-b23f-9fed1a9179c4.jpg)
-
+    ![Sudden-Clarity-Clarence](https://user-images.githubusercontent.com/11652957/135769271-29526ca5-5d0d-49b8-99ec-22ef9c459e12.jpg)
