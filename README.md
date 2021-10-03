@@ -30,5 +30,5 @@ Rough outline of steps:
         RETURN path
 ![Screen Shot 2021-10-03 at 11 36 34 AM](https://user-images.githubusercontent.com/11652957/135765157-50c059e4-15c9-4cea-9ed5-39a5cff6ce88.png)
 
- - **FINAL STEP: Perform demo. Amaze friends and coworkers.**
+ - **FINAL STEP: Perform demo. Amaze friends and coworkers by asking them to replicate the demo in an RDBMS using SQL.**
 
