@@ -3,7 +3,7 @@ This is the Neo4j demo that I give to demonstrate some of the unique characteris
 
 Rough outline of steps:
 
- - **Setup a test Neo4j database.** Outside the scope of this demo, but I find that the free version of Neo4j Desktop works just fine.
+ - **Setup a test Neo4j database.** Outside the scope of this demo, but I find that the free version of Neo4j Desktop works just fine. You can download Neo4j desktop for free here: [https://neo4j.com/download/](https://neo4j.com/download/)
  - Create source nodes in neo4j for person1 (Al).
  - Create a "golden" record that connects the source nodes for person1. It will look like this:
 
