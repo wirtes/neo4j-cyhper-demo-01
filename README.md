@@ -66,9 +66,19 @@ Rough outline of steps:
 
 ![Screen Shot 2021-10-03 at 12 56 01 PM](https://user-images.githubusercontent.com/11652957/135767612-ba36e69c-4e1a-439d-b103-5426f8d18f26.png)
 
+- Now let's relate the source data from the third system to to the golden record:
+
+        // Match Advance record and create relationships
+        MATCH (g:golden) WHERE g.cid="Golden123"
+        MATCH (adv:persona) WHERE adv.sourceSystemId="ADV123"
+        CREATE (adv)-[:ADVANCE]->(g)
+        
+- Query all the nodes again to see what we have
+
+        MATCH (n) RETURN n LIMIT 25
 
 ![Screen Shot 2021-10-03 at 11 09 13 AM](https://user-images.githubusercontent.com/11652957/135764383-9850db1e-9aad-47ec-83c3-9c9bb961f9f3.png)
- - Create person2 Record (Alisha)
+ - Create person2 Record (Alisha) *Stopped adding code examples in ReadMe HERE*
  - Connect person2 to a fund
  - Connect person2's social media to person1. It will look like this:
 
