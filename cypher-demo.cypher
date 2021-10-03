@@ -4,7 +4,7 @@
 create (AlWirtes:persona {name:"Albert Wirtes", birthday:"April 24", sourceSystem:"CS", sourceSystemId:"123456"})
 create (AlHomeAddr:address {add1:"123 Main Street", city:"Anytown", state:"Indiana", zip:"46410"})
 CREATE (AlWirtes)-[:ADDRESS {type:"home"}]->(AlHomeAddr)
-create (alEmail:email {email:"al.wirtes@cu.edu"})
+create (alEmail:email {email:"al.wirtes@college.edu"})
 CREATE (AlWirtes)-[:EMAIL {type:"official"}]->(alEmail)
 CREATE (alPhone:phone {mobile:"303-555-1212"})
 CREATE (AlWirtes)-[:PHONE {type:"mobile"}]->(alPhone)
@@ -25,12 +25,16 @@ CREATE (AlbertWirtes)-[:DEPT]->(d)
 CREATE (adv:persona {name:"Al Wirtes", sourceSystem:"Advance", sourceSystemId:"ADV123"})
 CREATE (advEmail:email {email:"wirtes@gmail.com"})
 CREATE (adv)-[:EMAIL]->(advEmail)
-CREATE (f:fund {name:"Radio 1190"})
+CREATE (f:fund {name:"College Radio Station"})
 CREATE (adv)-[:FUND]->(f)
 CREATE (t:social {name:"@al_wirtes"})
 CREATE (adv)-[:TWITTER]->(t)
 //
 RETURN AlbertWirtes, AlWirtes, adv
+
+
+### Query everything we just created above:
+MATCH (n) RETURN n LIMIT 25
 
 
 
