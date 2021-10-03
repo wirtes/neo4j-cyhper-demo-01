@@ -8,9 +8,11 @@ Rough outline of steps:
  3. Create a "golden" record that connects the source nodes for person1. It will look like this:
 
 ![Screen Shot 2021-10-03 at 11 09 13 AM](https://user-images.githubusercontent.com/11652957/135764383-9850db1e-9aad-47ec-83c3-9c9bb961f9f3.png)
-
  4. Create person2 Record (Alisha)
- 5. Connect person2 to a fund.
- 6. Create a person3 Record (Bob)
- 7. **Perform demo. Amaze friends and coworkers.**
+ 6. Connect person2 to a fund
+ 7. Connect person2's social media to person1. It will look like this:
+
+![Screen Shot 2021-10-03 at 11 16 42 AM](https://user-images.githubusercontent.com/11652957/135764646-fb2a1e57-2fca-458e-9eca-0464630f79d2.png)
+ 8. Create a person3 Record (Bob)
+ 9. **Perform demo. Amaze friends and coworkers.**
 
