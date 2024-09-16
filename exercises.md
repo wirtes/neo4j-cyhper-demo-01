@@ -43,7 +43,7 @@ RETURN n;
  CREATE (a)-[:HCM]->(g)
  RETURN a, g
 ```
-This should return these nodes and relatioship:
+This should return these nodes and relationship:
 
 <img width="659" alt="Screenshot 2024-09-16 at 5 17 57 PM" src="https://github.com/user-attachments/assets/0f3a8525-84b7-4695-9f0f-9368a5b0b5d8">
 </details>
